@@ -1,0 +1,10 @@
+<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Alciellen J&amp;R Concretos</title>
+  <desc id="desc">Logo com monograma A, base de concreto e linha dourada de acabamento de piso.</desc>
+  <rect width="160" height="160" rx="18" fill="#17191C"/>
+  <path d="M24 120L80 24L136 120H111L80 66L49 120H24Z" fill="#F4F1EB"/>
+  <path d="M60 120L80 84L100 120H60Z" fill="#17191C"/>
+  <path d="M39 128H121L112 144H30L39 128Z" fill="#A93728"/>
+  <path d="M53 118C71 106 93 106 111 118" stroke="#D6A12B" stroke-width="8" stroke-linecap="round"/>
+  <path d="M46 36H114" stroke="#D6A12B" stroke-width="5" stroke-linecap="round"/>
+</svg>
