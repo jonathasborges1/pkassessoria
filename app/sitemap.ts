@@ -1,21 +1,15 @@
 import type { MetadataRoute } from "next";
+import { SITE_URL } from "./site-config";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3001";
-  const lastModified = new Date("2026-06-17");
+  const lastModified = new Date("2026-06-18");
 
   return [
     {
-      url: siteUrl,
+      url: SITE_URL,
       lastModified,
       changeFrequency: "monthly",
       priority: 1,
-    },
-    {
-      url: `${siteUrl}/proposta-comercial/alciellen`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.8,
     },
   ];
 }

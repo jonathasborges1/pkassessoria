@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import {
   ArrowRight,
@@ -17,7 +18,7 @@ import {
 } from "lucide-react";
 
 const WA_NUMBER = "5592993564052";
-const WA = (message = "Ola, Alciellen! Gostaria de solicitar um orcamento.") =>
+const WA = (message = "Olá, Alciellen! Gostaria de solicitar um orçamento.") =>
   `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
 
 const assets = {
@@ -25,10 +26,10 @@ const assets = {
   portrait: "/images/alciellen/alciellen-consultora-comercial.png",
   vigotas: "/images/alciellen/vigotas-para-laje-jr-concretos.jpg",
   concreto: "/images/alciellen/concreto-usinado-jr-concretos-manaus.jpg",
-  laje: "/images/alciellen/laje-pre-moldada-obra-bemol.jpg",
+  laje: "/images/alciellen/laje-pre-moldada-instalacao-v2.jpg",
   bomba: "/images/alciellen/bombeamento-concreto-caminhao-betoneira.jpg",
-  piso: "/images/alciellen/piso-polido-piso-discado-jr-concretos.jpg",
-  pisoDiscado: "/images/alciellen/piso-discado-acabamento-jr-concretos.jpg",
+  piso: "/images/alciellen/piso-polido-industrial-v2.jpg",
+  pisoDiscado: "/images/alciellen/piso-discado-aplicacao-v2.jpg",
 };
 
 const navItems = [
@@ -44,41 +45,54 @@ const products = [
     description:
       "Para lajes, pisos e obras que precisam de fornecimento programado, qualidade e previsibilidade.",
     image: assets.concreto,
+    imageWidth: 738,
+    imageHeight: 424,
     icon: Truck,
   },
   {
-    title: "Laje pre-moldada sob medida",
+    title: "Laje pré-moldada sob medida",
     description:
-      "Solucao para acelerar a execucao com acompanhamento comercial desde o primeiro contato.",
+      "Solução para acelerar a execução com acompanhamento comercial desde o primeiro contato.",
     image: assets.laje,
+    imageWidth: 1536,
+    imageHeight: 1024,
     icon: Building2,
   },
   {
     title: "Vigotas para laje",
     description:
-      "Opcao indicada para quem busca resistencia, seguranca e melhor custo-beneficio estrutural.",
+      "Opção indicada para quem busca resistência, segurança e melhor custo-benefício estrutural.",
     image: assets.vigotas,
+    imageWidth: 737,
+    imageHeight: 979,
+    imageLayout: "portrait",
     icon: Ruler,
   },
   {
     title: "Bombeamento de concreto",
     description:
-      "Apoio para obras que exigem alcance, produtividade e organizacao no lancamento do concreto.",
+      "Apoio para obras que exigem alcance, produtividade e organização no lançamento do concreto.",
     image: assets.bomba,
+    imageWidth: 597,
+    imageHeight: 425,
     icon: Factory,
   },
   {
     title: "Piso polido",
     description:
-      "Acabamento de alta durabilidade e estetica refinada para pisos comerciais, residenciais e industriais.",
+      "Acabamento de alta durabilidade e estética refinada para pisos comerciais, residenciais e industriais.",
     image: assets.piso,
+    imageWidth: 1536,
+    imageHeight: 1024,
     icon: Ruler,
   },
   {
     title: "Piso discado",
     description:
-      "Servico especializado em piso discado com qualidade, resistencia e entrega programada para sua obra.",
+      "Serviço especializado em piso discado com qualidade, resistência e entrega programada para sua obra.",
     image: assets.pisoDiscado,
+    imageWidth: 1536,
+    imageHeight: 1024,
     fallbackImage: assets.piso,
     icon: ShieldCheck,
   },
@@ -89,7 +103,7 @@ const audiences = [
   ["Arquitetos", Ruler],
   ["Mestres de obras", ShieldCheck],
   ["Construtoras", Building2],
-  ["Empresarios", Factory],
+  ["Empresários", Factory],
   ["Obras residenciais", Home],
   ["Obras comerciais", Building2],
   ["Obras industriais", Factory],
@@ -97,24 +111,24 @@ const audiences = [
 
 const faqs = [
   {
-    q: "Como solicitar orcamento?",
-    a: "Envie uma mensagem pelo WhatsApp informando produto desejado, endereco da obra, volume aproximado e, se tiver, medidas ou projeto.",
+    q: "Como solicitar orçamento?",
+    a: "Envie uma mensagem pelo WhatsApp informando o produto desejado, endereço da obra, volume aproximado e, se tiver, medidas ou projeto.",
   },
   {
-    q: "Voces atendem Manaus?",
-    a: "Sim. O atendimento e direcionado para Manaus - AM, com base na operacao da J&R Concretos.",
+    q: "Vocês atendem Manaus?",
+    a: "Sim. O atendimento é direcionado para Manaus - AM, com base na operação da J&R Concretos.",
   },
   {
     q: "Trabalham com bombeamento?",
-    a: "Sim. O bombeamento esta entre os servicos destacados e pode ser orientado conforme volume, acesso e etapa da obra.",
+    a: "Sim. O bombeamento está entre os serviços destacados e pode ser orientado conforme volume, acesso e etapa da obra.",
   },
   {
     q: "Como calcular concreto?",
-    a: "A estimativa inicial considera area, espessura e tipo de aplicacao. Alciellen pode orientar os dados necessarios para o orcamento.",
+    a: "A estimativa inicial considera área, espessura e tipo de aplicação. Alciellen pode orientar os dados necessários para o orçamento.",
   },
   {
     q: "Atendem grandes obras?",
-    a: "Sim. A comunicacao contempla construtoras, engenheiros, empresas, distritos industriais e obras comerciais ou industriais.",
+    a: "Sim. A comunicação contempla construtoras, engenheiros, empresas, distritos industriais e obras comerciais ou industriais.",
   },
 ];
 
@@ -126,6 +140,9 @@ const css = `
   .alc img{display:block;max-width:100%}
   .alc a{color:inherit;text-decoration:none}
   .alc button{font:inherit}
+  .alc-skip{position:fixed;z-index:2000;top:8px;left:8px;padding:12px 16px;border-radius:6px;background:#17191c;color:#fff;font:800 12px/1.2 Inter,system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;transform:translateY(-160%);transition:transform .18s ease}
+  .alc-skip:focus{transform:translateY(0)}
+  .alc a:focus-visible,.alc button:focus-visible,.alc-footer a:focus-visible,.alc-skip:focus-visible{outline:3px solid #d6a12b;outline-offset:3px}
   .alc-wrap{width:min(1160px,calc(100% - 40px));margin:0 auto}
   .alc-section{padding:88px 0}
   .alc-eyebrow{display:flex;align-items:center;gap:10px;margin:0 0 14px;color:#a93728;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
@@ -144,7 +161,7 @@ const css = `
   .alc-brand{display:flex;align-items:center;gap:12px;text-decoration:none}
   .alc-brand-mark{width:38px;height:38px;border-radius:4px;display:block;object-fit:contain}
   .alc-brand strong{display:block;color:#17191c;font-size:17px;line-height:1;font-weight:850}
-  .alc-brand span{display:block;margin-top:4px;color:#74777b;font-size:10px;font-weight:800;letter-spacing:.13em;text-transform:uppercase}
+  .alc-brand span{display:block;margin-top:4px;color:#656a70;font-size:10px;font-weight:800;letter-spacing:.13em;text-transform:uppercase}
   .alc-nav-links{display:none;align-items:center;gap:22px}
   .alc-nav-links a{color:#4f5459;font-size:11px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;text-decoration:none}
   .alc-nav-links a:hover{color:#a93728}
@@ -162,43 +179,44 @@ const css = `
   .alc-proof-row{display:grid;grid-template-columns:1fr;gap:10px;margin-top:34px;max-width:760px}
   .alc-proof{padding:14px 16px;border-left:3px solid #d6a12b;background:#fff;box-shadow:0 12px 30px rgba(34,33,28,.06)}
   .alc-proof strong{display:block;color:#17191c;font-size:13px;font-weight:850}
-  .alc-proof span{display:block;margin-top:5px;color:#767a80;font-size:12px;line-height:1.45}
+  .alc-proof span{display:block;margin-top:5px;color:#666b70;font-size:12px;line-height:1.45}
   .alc-visual{position:relative;min-height:530px;border-radius:10px;overflow:hidden;background:#191d22;box-shadow:0 28px 80px rgba(27,31,36,.18)}
-  .alc-visual::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,12,15,.12),rgba(10,12,15,.64)),url("${assets.concreto}") center/cover no-repeat}
-  .alc-portrait-card{position:absolute;right:22px;bottom:22px;width:min(260px,calc(100% - 44px));padding:10px;background:rgba(244,241,235,.95);border-radius:8px;box-shadow:0 20px 50px rgba(0,0,0,.26)}
-  .alc-portrait-card img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 38%;border-radius:6px}
+  .alc-visual-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .alc-visual::after{content:"";position:absolute;z-index:0;inset:0;background:linear-gradient(180deg,rgba(10,12,15,.12),rgba(10,12,15,.64));pointer-events:none}
+  .alc-portrait-card{position:absolute;z-index:1;right:22px;bottom:22px;width:min(260px,calc(100% - 44px));padding:10px;background:rgba(244,241,235,.95);border-radius:8px;box-shadow:0 20px 50px rgba(0,0,0,.26)}
+  .alc-portrait-card img{width:100%;height:300px;object-fit:cover;object-position:50% 25%;border-radius:6px}
   .alc-portrait-meta{padding:13px 4px 2px}
   .alc-portrait-meta strong{display:block;color:#17191c;font-size:18px;font-weight:850}
   .alc-portrait-meta span{display:block;margin-top:4px;color:#a93728;font-size:11px;font-weight:850;letter-spacing:.12em;text-transform:uppercase}
-  .alc-visual-label{position:absolute;left:22px;top:22px;max-width:290px;padding:16px;background:rgba(17,19,21,.76);border:1px solid rgba(255,255,255,.12);border-radius:8px;color:#fff;backdrop-filter:blur(10px)}
+  .alc-visual-label{position:absolute;z-index:1;left:22px;top:22px;max-width:290px;padding:16px;background:rgba(17,19,21,.94);border:1px solid rgba(255,255,255,.24);border-radius:8px;color:#fff;backdrop-filter:blur(10px)}
   .alc-visual-label strong{display:block;font-size:13px;font-weight:850;letter-spacing:.1em;text-transform:uppercase}
-  .alc-visual-label span{display:block;margin-top:8px;color:rgba(255,255,255,.72);font-size:13px;line-height:1.55}
+  .alc-visual-label span{display:block;margin-top:8px;color:#e1e3e5;font-size:13px;line-height:1.55}
 
   .alc-metrics{border-block:1px solid rgba(23,25,28,.08);background:#fff}
   .alc-metrics-grid{display:grid;grid-template-columns:1fr;gap:0}
   .alc-metric{padding:24px 0;border-bottom:1px solid rgba(23,25,28,.08)}
   .alc-metric strong{display:block;color:#17191c;font-size:28px;font-weight:800}
-  .alc-metric span{display:block;margin-top:4px;color:#74777b;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+  .alc-metric span{display:block;margin-top:4px;color:#666b70;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
 
   .alc-about-grid{display:grid;gap:34px;align-items:start}
   .alc-about-text{padding:30px;background:#1b1f24;color:#fff;border-radius:10px}
-  .alc-about-text p{margin:0;color:rgba(255,255,255,.76);font-size:16px;line-height:1.82}
+  .alc-about-text p{margin:0;color:#d5d7d9;font-size:16px;line-height:1.82}
   .alc-about-text p+p{margin-top:18px}
   .alc-checks{display:grid;gap:10px;margin-top:24px}
   .alc-checks span{display:flex;gap:10px;align-items:flex-start;color:#fff;font-size:13px;font-weight:720;line-height:1.45}
   .alc-checks svg{margin-top:1px;color:#d6a12b;flex:none}
-  .alc-about-img{border-radius:10px;overflow:hidden;background:#d8d1c4;box-shadow:0 18px 50px rgba(27,31,36,.12)}
-  .alc-about-img img{width:100%;aspect-ratio:2/3;object-fit:cover;object-position:50% 42%;background:#d8d1c4}
+  .alc-about-img{width:min(100%,280px);justify-self:center;border-radius:10px;overflow:hidden;background:#d8d1c4;box-shadow:0 18px 50px rgba(27,31,36,.12)}
+  .alc-about-img img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 38%;background:#d8d1c4}
 
   .alc-products{background:#17191c;color:#fff}
   .alc-products .alc-eyebrow{color:#d6a12b}
   .alc-products .alc-h2{color:#fff}
-  .alc-products .alc-lead{color:rgba(255,255,255,.66)}
+  .alc-products .alc-lead{color:#c9cccf}
   .alc-product-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:40px}
-  .alc-product{display:flex;flex-direction:column;background:#f4f1eb;color:#17191c;border-radius:10px;overflow:hidden}
-  .alc-product-img{height:270px;background:#222}
+  .alc-product{position:relative;isolation:isolate;display:flex;flex-direction:column;background:#f4f1eb;color:#17191c;border-radius:10px;overflow:hidden}
+  .alc-product-img{position:relative;z-index:0;flex:none;height:270px;overflow:hidden;background:#222}
   .alc-product-img img{width:100%;height:100%;object-fit:cover}
-  .alc-product-body{padding:24px}
+  .alc-product-body{position:relative;z-index:1;flex:1;padding:24px;background:#f4f1eb}
   .alc-product-icon{width:42px;height:42px;margin-bottom:20px;display:grid;place-items:center;border-radius:6px;background:#17191c;color:#d6a12b}
   .alc-product h3{margin:0;color:#17191c;font-size:23px;font-weight:780;letter-spacing:0;line-height:1.12}
   .alc-product p{margin:12px 0 0;color:#63676c;font-size:15px;line-height:1.68}
@@ -219,18 +237,18 @@ const css = `
   .alc-gallery{background:#17191c;color:#fff}
   .alc-gallery .alc-eyebrow{color:#d6a12b}
   .alc-gallery .alc-h2{color:#fff}
-  .alc-gallery .alc-lead{color:rgba(255,255,255,.66)}
+  .alc-gallery .alc-lead{color:#c9cccf}
   .alc-gallery-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:40px}
   .alc-shot{position:relative;margin:0;min-height:260px;overflow:hidden;border-radius:10px;background:#000}
   .alc-shot img{width:100%;height:100%;min-height:260px;object-fit:cover;transition:transform .45s ease}
   .alc-shot:hover img{transform:scale(1.035)}
-  .alc-shot figcaption{position:absolute;left:14px;bottom:14px;padding:9px 11px;border-radius:5px;background:rgba(17,19,21,.82);color:#fff;font-size:11px;font-weight:850;letter-spacing:.09em;text-transform:uppercase;backdrop-filter:blur(8px)}
+  .alc-shot figcaption{position:absolute;left:14px;bottom:14px;padding:9px 11px;border:1px solid rgba(255,255,255,.18);border-radius:5px;background:rgba(17,19,21,.95);color:#fff;font-size:11px;font-weight:850;letter-spacing:.09em;text-transform:uppercase;backdrop-filter:blur(8px)}
 
   .alc-diff-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:34px}
   .alc-diff{display:flex;gap:12px;align-items:flex-start;padding:18px;background:#fff;border-radius:8px;border:1px solid rgba(23,25,28,.08)}
   .alc-diff svg{color:#a93728;flex:none}
   .alc-diff strong{display:block;color:#17191c;font-size:14px;font-weight:780}
-  .alc-diff span{display:block;margin-top:4px;color:#74777b;font-size:13px;line-height:1.52}
+  .alc-diff span{display:block;margin-top:4px;color:#666b70;font-size:13px;line-height:1.52}
 
   .alc-faq-grid{display:grid;gap:12px;margin-top:34px}
   .alc-faq{background:#fff;border:1px solid rgba(23,25,28,.08);border-radius:8px;overflow:hidden}
@@ -243,7 +261,7 @@ const css = `
   .alc-location-grid{display:grid;gap:28px;align-items:center}
   .alc-location-card{padding:26px;border-radius:10px;background:#17191c;color:#fff}
   .alc-location-card strong{display:block;font-size:20px;font-weight:780}
-  .alc-location-card p{margin:12px 0 0;color:rgba(255,255,255,.72);line-height:1.7}
+  .alc-location-card p{margin:12px 0 0;color:#d5d7d9;line-height:1.7}
   .alc-location-card a{margin-top:20px}
   .alc-map{min-height:360px;border:0;border-radius:10px;overflow:hidden;box-shadow:0 18px 50px rgba(27,31,36,.12);background:#e8e3d7}
   .alc-map iframe{display:block;width:100%;height:100%;min-height:360px;border:0}
@@ -252,21 +270,21 @@ const css = `
   .alc-final::before{content:"";position:absolute;inset:0;background:url("${assets.bomba}") center/cover no-repeat;opacity:.13}
   .alc-final-inner{position:relative;display:grid;gap:28px;align-items:center}
   .alc-final h2{max-width:680px;margin:0;font-size:clamp(30px,4.8vw,54px);font-weight:760;line-height:1.06}
-  .alc-final p{max-width:640px;margin:16px 0 0;color:rgba(255,255,255,.78);font-size:16px;line-height:1.75}
-  .alc-footer{padding:56px 0 0;background:#101214;color:rgba(255,255,255,.58);font-size:14px}
+  .alc-final p{max-width:640px;margin:16px 0 0;color:#f1e6e3;font-size:16px;line-height:1.75}
+  .alc-footer{padding:56px 0 0;background:#101214;color:#c4c7ca;font-size:14px}
   .alc-footer-brand{padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:40px}
   .alc-footer-brand strong{display:block;color:#fff;font-size:20px;font-weight:850;letter-spacing:0;line-height:1}
-  .alc-footer-brand span{display:block;margin-top:8px;color:rgba(255,255,255,.44);font-size:13px;line-height:1.5}
+  .alc-footer-brand span{display:block;margin-top:8px;color:#b8bbbe;font-size:13px;line-height:1.5}
   .alc-footer-grid{display:grid;gap:32px}
   .alc-footer-col strong{display:block;color:#fff;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}
   .alc-footer-col p{margin:0;line-height:1.7}
-  .alc-footer-col a{display:flex;align-items:center;gap:9px;color:rgba(255,255,255,.58);text-decoration:none;line-height:1.6;transition:color .15s}
+  .alc-footer-col a{display:flex;align-items:center;gap:9px;color:#c4c7ca;text-decoration:none;line-height:1.6;transition:color .15s}
   .alc-footer-col a:hover{color:#d6a12b}
   .alc-footer-col a+a{margin-top:8px}
-  .alc-footer-bottom{margin-top:40px;padding:18px 0;border-top:1px solid rgba(255,255,255,.07);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:11px;color:rgba(255,255,255,.28)}
-  .alc-footer-bottom a{color:rgba(255,255,255,.44);text-decoration:none;transition:color .15s}
+  .alc-footer-bottom{margin-top:40px;padding:18px 0;border-top:1px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:11px;color:#9fa3a7}
+  .alc-footer-bottom a{color:#c4c7ca;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;transition:color .15s}
   .alc-footer-bottom a:hover{color:#d6a12b}
-  .alc-wa{position:fixed;right:18px;bottom:18px;z-index:950;width:56px;height:56px;display:grid;place-items:center;border-radius:50%;background:#25d366;color:#fff;box-shadow:0 12px 34px rgba(37,211,102,.32);animation:alc-wa-pulse 2.2s ease-out infinite;transition:transform .18s ease}
+  .alc-wa{position:fixed;right:18px;bottom:18px;z-index:950;width:56px;height:56px;display:grid;place-items:center;border:2px solid #fff;border-radius:50%;background:#08783d;color:#fff;box-shadow:0 12px 34px rgba(8,120,61,.34);animation:alc-wa-pulse 2.2s ease-out infinite;transition:transform .18s ease}
   .alc-wa:hover{transform:translateY(-2px) scale(1.04);animation-play-state:paused}
   @keyframes alc-wa-pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.58),0 12px 34px rgba(37,211,102,.32)}68%{box-shadow:0 0 0 18px rgba(37,211,102,0),0 12px 34px rgba(37,211,102,.32)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0),0 12px 34px rgba(37,211,102,.32)}}
 
@@ -284,6 +302,8 @@ const css = `
     .alc-menu{display:none}
     .alc-hero-inner{grid-template-columns:minmax(0,1fr) 626px}
     .alc-about-grid{grid-template-columns:1.05fr .95fr}
+    .alc-about-img{width:340px;height:500px;justify-self:center}
+    .alc-about-img img{width:100%;height:100%;aspect-ratio:auto;object-fit:cover;object-position:50% 30%}
     .alc-gallery-grid{grid-template-columns:1.1fr .9fr .9fr}
     .alc-shot:first-child{grid-row:span 2;min-height:536px}
     .alc-shot:first-child img{min-height:536px}
@@ -302,9 +322,20 @@ const css = `
     .alc-hero h1{font-size:clamp(36px,10.4vw,48px);line-height:1.06}
     .alc-hero-sub{margin-top:22px;font-size:16px;line-height:1.66}
     .alc-hero-actions .alc-btn{width:100%}
-    .alc-visual{min-height:660px}
-    .alc-visual-label{left:16px;right:16px;top:16px;max-width:none}
-    .alc-portrait-card{left:50%;right:auto;bottom:16px;width:min(320px,calc(100% - 32px));transform:translateX(-50%)}
+    .alc-visual{min-height:0;padding:16px;display:flex;flex-direction:column;gap:14px}
+    .alc-visual::after{display:none}
+    .alc-visual-bg{position:relative;inset:auto;width:100%;height:auto;object-fit:contain;border-radius:7px}
+    .alc-visual-label{position:relative;inset:auto;max-width:none;order:-1}
+    .alc-portrait-card{position:relative;inset:auto;width:min(100%,300px);align-self:center;transform:none}
+    .alc-portrait-card img{height:340px;aspect-ratio:auto;object-fit:cover;object-position:50% 24%}
+    .alc-about-img img{height:340px;aspect-ratio:auto;object-position:50% 27%}
+    .alc-product-img{height:360px;display:grid;place-items:center;background:#101214}
+    .alc-product-img img{width:100%;height:100%;max-width:none;object-fit:contain}
+    .alc-product-img--portrait{height:auto;aspect-ratio:737/979}
+    .alc-shot{min-height:0;background:#101214}
+    .alc-shot img{width:100%;height:360px;min-height:0;max-width:none;object-fit:contain}
+    .alc-shot figcaption{position:static;border:0;border-radius:0;background:#101214}
+    .alc-final::before{background-size:contain;background-repeat:no-repeat;background-position:center}
     .alc-metrics{padding:16px 0;background:#f4f1eb;border-block:0}
     .alc-metrics-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
     .alc-metric{padding:16px 14px;border:1px solid rgba(23,25,28,.08);border-radius:9px;background:#fff;box-shadow:0 10px 24px rgba(34,33,28,.045)}
@@ -317,6 +348,10 @@ const css = `
     .alc-audience svg{width:20px;height:20px}
     .alc-audience strong{font-size:12px;line-height:1.22}
   }
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .alc *, .alc *::before, .alc *::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  }
 `;
 
 function Navbar() {
@@ -324,7 +359,7 @@ function Navbar() {
 
   return (
     <>
-      <nav className="alc-nav" aria-label="Navegacao principal">
+      <nav className="alc-nav" aria-label="Navegação principal">
         <div className="alc-wrap alc-nav-inner">
           <a className="alc-brand" href="#top" onClick={() => setOpen(false)}>
             <img className="alc-brand-mark" src={assets.logo} alt="Alciellen J&R Concretos" width="40" height="40" />
@@ -340,7 +375,7 @@ function Navbar() {
               </a>
             ))}
             <a className="alc-btn alc-btn-primary" href={WA()} target="_blank" rel="noreferrer">
-              <WhatsAppIcon size={15} /> Orcamento
+              <WhatsAppIcon size={15} /> Orçamento
             </a>
           </div>
           <button
@@ -355,16 +390,16 @@ function Navbar() {
         </div>
       </nav>
       {open && (
-        <div className="alc-mobile">
+        <nav className="alc-mobile" aria-label="Navegação mobile">
           {navItems.map((item) => (
             <a href={item.href} key={item.href} onClick={() => setOpen(false)}>
               {item.label}
             </a>
           ))}
           <a href={WA()} target="_blank" rel="noreferrer" onClick={() => setOpen(false)}>
-            <WhatsAppIcon size={15} /> Solicitar orcamento
+            <WhatsAppIcon size={15} /> Solicitar orçamento
           </a>
-        </div>
+        </nav>
       )}
     </>
   );
@@ -376,15 +411,15 @@ function Hero() {
       <div className="alc-wrap alc-hero-inner">
         <div className="alc-hero-copy">
           <p className="alc-eyebrow">J&R Concretos em Manaus</p>
-          <h1>Concreto usinado e lajes pre-moldadas para sua obra.</h1>
+          <h1>Concreto usinado e lajes pré-moldadas para sua obra.</h1>
           <p className="alc-hero-sub">
             Atendimento especializado para engenheiros, arquitetos, construtoras,
-            empresarios e clientes que buscam qualidade, seguranca e agilidade
-            para construir. Tambem atendemos piso polido e piso discado.
+            empresários e clientes que buscam qualidade, segurança e agilidade
+            para construir. Também atendemos piso polido e piso discado.
           </p>
           <div className="alc-hero-actions">
-            <a className="alc-btn alc-btn-primary" href={WA("Ola, Alciellen! Quero solicitar um orcamento para minha obra.")} target="_blank" rel="noreferrer">
-              <WhatsAppIcon size={16} /> Pedir orcamento pelo WhatsApp
+            <a className="alc-btn alc-btn-primary" href={WA("Olá, Alciellen! Quero solicitar um orçamento para minha obra.")} target="_blank" rel="noreferrer">
+              <WhatsAppIcon size={16} /> Pedir orçamento pelo WhatsApp
             </a>
             <a className="alc-btn alc-btn-outline" href="#produtos">
               Ver produtos <ArrowRight size={15} />
@@ -397,7 +432,7 @@ function Hero() {
             </div>
             <div className="alc-proof">
               <strong>Resposta direta</strong>
-              <span>Contato rapido pelo WhatsApp.</span>
+              <span>Contato rápido pelo WhatsApp.</span>
             </div>
             <div className="alc-proof">
               <strong>Obras em Manaus</strong>
@@ -406,12 +441,29 @@ function Hero() {
           </div>
         </div>
         <div className="alc-visual" aria-label="Concreto usinado J&R e consultora Alciellen">
+          <Image
+            className="alc-visual-bg"
+            src={assets.concreto}
+            alt=""
+            aria-hidden="true"
+            width={738}
+            height={424}
+            sizes="(min-width: 980px) 626px, (min-width: 680px) calc(100vw - 64px), calc(100vw - 64px)"
+            priority
+          />
           <div className="alc-visual-label">
             <strong>Do primeiro contato ao agendamento</strong>
-            <span>Uma experiencia comercial mais clara para comprar concreto, laje, vigotas e bombeamento.</span>
+            <span>Uma experiência comercial mais clara para comprar concreto, laje, vigotas e bombeamento.</span>
           </div>
           <div className="alc-portrait-card">
-            <img src={assets.portrait} alt="Alciellen, consultora comercial da J&R Concretos" decoding="async" />
+            <Image
+              src={assets.portrait}
+              alt="Alciellen, consultora comercial da J&R Concretos"
+              width={1000}
+              height={1500}
+              sizes="(max-width: 679px) 280px, 260px"
+              decoding="async"
+            />
             <div className="alc-portrait-meta">
               <strong>Alciellen</strong>
               <span>Vendedora - J&R Concretos</span>
@@ -428,10 +480,10 @@ function Metrics() {
     <section className="alc-metrics" aria-label="Resumo comercial">
       <div className="alc-wrap alc-metrics-grid">
         {[
-          ["6", "solucoes para obra"],
-          ["24h", "operacao destacada"],
+          ["6", "soluções para obra"],
+          ["Direto", "contato pelo WhatsApp"],
           ["Manaus", "atendimento local"],
-          ["J&R", "concretos e servicos"],
+          ["J&R", "concretos e serviços"],
         ].map(([value, label]) => (
           <div className="alc-metric" key={label}>
             <strong>{value}</strong>
@@ -451,32 +503,40 @@ function About() {
           <p className="alc-eyebrow">Sobre a consultora</p>
           <h2 className="alc-h2">Atendimento pessoal com respaldo operacional da J&R Concretos.</h2>
           <p className="alc-lead">
-            Esta pagina nao vende apenas produto. Ela apresenta uma pessoa de
-            referencia para orientar o cliente, organizar informacoes e acelerar
-            a chegada ao orcamento certo.
+            Esta página não vende apenas produto. Ela apresenta uma pessoa de
+            referência para orientar o cliente, organizar informações e acelerar
+            a chegada ao orçamento certo.
           </p>
           <div className="alc-about-text" style={{ marginTop: 28 }}>
             {/* TODO: substituir pela historia real da cliente. */}
             <p>
               Alciellen atua no atendimento comercial da J&R Concretos, apoiando
-              clientes que precisam de concreto usinado, lajes pre-moldadas,
+              clientes que precisam de concreto usinado, lajes pré-moldadas,
               vigotas, bombeamento de concreto, piso polido e piso discado em
               Manaus.
             </p>
             <p>
-              O foco e simplificar a compra: entender a demanda, orientar os
-              dados necessarios, enviar o orcamento e acompanhar o cliente ate o
+              O foco é simplificar a compra: entender a demanda, orientar os
+              dados necessários, enviar o orçamento e acompanhar o cliente até o
               agendamento.
             </p>
             <div className="alc-checks">
               <span><CheckCircle2 size={17} /> Atendimento para obras residenciais, comerciais e industriais.</span>
-              <span><CheckCircle2 size={17} /> Comunicacao direta para reduzir duvidas e retrabalho.</span>
+              <span><CheckCircle2 size={17} /> Comunicação direta para reduzir dúvidas e retrabalho.</span>
               <span><CheckCircle2 size={17} /> Apoio comercial para engenheiros, arquitetos e construtoras.</span>
             </div>
           </div>
         </div>
         <div className="alc-about-img">
-          <img src={assets.portrait} alt="Alciellen, consultora comercial" loading="lazy" decoding="async" />
+          <Image
+            src={assets.portrait}
+            alt="Alciellen, consultora comercial"
+            width={1000}
+            height={1500}
+            sizes="(min-width: 980px) 340px, (min-width: 680px) 280px, min(280px, calc(100vw - 32px))"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </div>
     </section>
@@ -488,20 +548,31 @@ function Products() {
     <section id="produtos" className="alc-section alc-products">
       <div className="alc-wrap">
         <p className="alc-eyebrow">Produtos</p>
-        <h2 className="alc-h2">Solucoes para obra apresentadas com material real da cliente.</h2>
+        <h2 className="alc-h2">Soluções para obra apresentadas com material real da cliente.</h2>
         <p className="alc-lead">
-          A composicao visual usa as imagens disponiveis da Alciellen/J&R, sem
-          depender de imagens genericas de banco.
+          A composição visual usa as imagens disponíveis da Alciellen/J&R, sem
+          depender de imagens genéricas de banco.
         </p>
         <div className="alc-product-grid">
           {products.map((product) => {
             const Icon = product.icon;
             return (
               <article className="alc-product" key={product.title}>
-                <div className="alc-product-img">
-                  <img
+                <div
+                  className={`alc-product-img${
+                    "imageLayout" in product
+                      ? product.imageLayout === "portrait-tall"
+                        ? " alc-product-img--portrait-tall"
+                        : " alc-product-img--portrait"
+                      : ""
+                  }`}
+                >
+                  <Image
                     src={product.image}
                     alt={product.title}
+                    width={product.imageWidth}
+                    height={product.imageHeight}
+                    sizes="(min-width: 980px) 360px, (min-width: 680px) calc(50vw - 40px), calc(100vw - 32px)"
                     loading="lazy"
                     decoding="async"
                     onError={(event) => {
@@ -517,7 +588,7 @@ function Products() {
                   </div>
                   <h3>{product.title}</h3>
                   <p>{product.description}</p>
-                  <a href={WA(`Ola, Alciellen! Quero orcamento para ${product.title}.`)} target="_blank" rel="noreferrer">
+                  <a href={WA(`Olá, Alciellen! Quero orçamento para ${product.title}.`)} target="_blank" rel="noreferrer">
                     <WhatsAppIcon size={14} /> Consultar produto <ArrowRight size={14} />
                   </a>
                 </div>
@@ -538,7 +609,7 @@ function Audience() {
         <h2 className="alc-h2">Do cliente residencial aos projetos de maior porte.</h2>
         <p className="alc-lead">
           Uma rota clara para quem precisa comprar concreto e componentes de
-          laje com menos friccao comercial.
+          laje com menos fricção comercial.
         </p>
         <div className="alc-audience-grid">
           {audiences.map(([label, Icon]) => (
@@ -556,16 +627,16 @@ function Audience() {
 function Process() {
   const steps = [
     ["01", "Envie seu projeto", "Compartilhe medidas, local da obra, produto desejado e prazo esperado."],
-    ["02", "Receba orientacao especializada", "Alciellen confere os dados e orienta o caminho comercial mais adequado."],
-    ["03", "Receba seu orcamento", "Voce recebe as informacoes essenciais para decidir com seguranca."],
-    ["04", "Agende sua entrega", "Com o pedido alinhado, a proxima etapa e programar a entrega ou atendimento."],
+    ["02", "Receba orientação especializada", "Alciellen confere os dados e orienta o caminho comercial mais adequado."],
+    ["03", "Receba seu orçamento", "Você recebe as informações essenciais para decidir com segurança."],
+    ["04", "Agende sua entrega", "Com o pedido alinhado, a próxima etapa é programar a entrega ou atendimento."],
   ];
 
   return (
     <section id="processo" className="alc-section alc-process">
       <div className="alc-wrap">
         <p className="alc-eyebrow">Como funciona</p>
-        <h2 className="alc-h2">Um processo simples, direto e orientado para decisao.</h2>
+        <h2 className="alc-h2">Um processo simples, direto e orientado para decisão.</h2>
         <div className="alc-steps">
           {steps.map(([num, title, text]) => (
             <article className="alc-step" key={num}>
@@ -585,11 +656,11 @@ function Process() {
 function Differentials() {
   const items = [
     ["Atendimento personalizado", "Contato direto para entender contexto, urgencia e tipo de obra."],
-    ["Resposta rapida", "Fluxo pensado para transformar duvida em orcamento com agilidade."],
-    ["Acompanhamento completo", "Suporte comercial desde a primeira mensagem ate o agendamento."],
-    ["Suporte tecnico", "Orientacao inicial sobre dados, aplicacao e produto mais adequado."],
-    ["Entrega programada", "Organizacao para reduzir improviso em etapas criticas da obra."],
-    ["Qualidade garantida", "J&R como estrutura operacional por tras do atendimento."],
+    ["Resposta rápida", "Fluxo pensado para transformar dúvida em orçamento com agilidade."],
+    ["Acompanhamento completo", "Suporte comercial desde a primeira mensagem até o agendamento."],
+    ["Orientação comercial", "Apoio inicial sobre dados, aplicação e produto mais adequado."],
+    ["Entrega programada", "Organização para reduzir improviso em etapas críticas da obra."],
+    ["Estrutura operacional", "J&R como estrutura por trás do atendimento comercial."],
   ];
 
   return (
@@ -616,26 +687,35 @@ function Differentials() {
 
 function Gallery() {
   const shots = [
-    [assets.piso, "Piso polido e discado"],
-    [assets.laje, "Laje pre-moldada"],
-    [assets.concreto, "Concreto usinado"],
-    [assets.vigotas, "Vigotas para laje"],
-    [assets.bomba, "Bombeamento"],
+    { src: assets.piso, label: "Piso polido", width: 1536, height: 1024 },
+    { src: assets.pisoDiscado, label: "Piso discado", width: 1536, height: 1024 },
+    { src: assets.laje, label: "Laje pré-moldada", width: 1536, height: 1024 },
+    { src: assets.concreto, label: "Concreto usinado", width: 738, height: 424 },
+    { src: assets.vigotas, label: "Vigotas para laje", width: 737, height: 979 },
+    { src: assets.bomba, label: "Bombeamento", width: 597, height: 425 },
   ];
 
   return (
     <section id="obras" className="alc-section alc-gallery">
       <div className="alc-wrap">
-        <p className="alc-eyebrow">Obras e aplicacoes</p>
+        <p className="alc-eyebrow">Obras e aplicações</p>
         <h2 className="alc-h2">Concreto e lajes em uso real.</h2>
         <p className="alc-lead">
-          Veja registros de materiais, equipamentos e aplicacoes que mostram a
+          Veja registros de materiais, equipamentos e aplicações que mostram a
           estrutura da J&R Concretos no atendimento a diferentes tipos de obra.
         </p>
         <div className="alc-gallery-grid">
-          {shots.map(([src, label]) => (
+          {shots.map(({ src, label, width, height }) => (
             <figure className="alc-shot" key={src}>
-              <img src={src} alt={label} loading="lazy" decoding="async" />
+              <Image
+                src={src}
+                alt={label}
+                width={width}
+                height={height}
+                sizes="(min-width: 980px) 360px, calc(100vw - 32px)"
+                loading="lazy"
+                decoding="async"
+              />
               <figcaption>{label}</figcaption>
             </figure>
           ))}
@@ -652,17 +732,22 @@ function FAQ() {
     <section id="faq" className="alc-section">
       <div className="alc-wrap">
         <p className="alc-eyebrow">FAQ</p>
-        <h2 className="alc-h2">Perguntas frequentes antes do orcamento.</h2>
+        <h2 className="alc-h2">Perguntas frequentes antes do orçamento.</h2>
         <div className="alc-faq-grid">
           {faqs.map((faq, index) => {
             const active = open === index;
             return (
               <div className={`alc-faq${active ? " open" : ""}`} key={faq.q}>
-                <button type="button" onClick={() => setOpen(active ? -1 : index)} aria-expanded={active}>
+                <button
+                  type="button"
+                  onClick={() => setOpen(active ? -1 : index)}
+                  aria-expanded={active}
+                  aria-controls={`faq-answer-${index}`}
+                >
                   {faq.q}
                   <ChevronDown size={18} />
                 </button>
-                {active && <p>{faq.a}</p>}
+                {active && <p id={`faq-answer-${index}`}>{faq.a}</p>}
               </div>
             );
           })}
@@ -676,14 +761,14 @@ function Location() {
   const mapsQuery = "Av. Elias Ramiro Bentes, 918B, Manaus AM, 69018-567";
 
   return (
-    <section className="alc-section alc-location" aria-label="Localizacao">
+    <section className="alc-section alc-location" aria-label="Localização">
       <div className="alc-wrap alc-location-grid">
         <div>
-          <p className="alc-eyebrow">Localizacao</p>
+          <p className="alc-eyebrow">Localização</p>
           <h2 className="alc-h2">Base em Manaus para atender sua obra com mais previsibilidade.</h2>
           <p className="alc-lead">
-            O endereco reforca a presenca local da J&R Concretos e facilita a
-            conversa sobre logistica, entrega e atendimento.
+            O endereço reforça a presença local da J&R Concretos e facilita a
+            conversa sobre logística, entrega e atendimento.
           </p>
           <div className="alc-location-card" style={{ marginTop: 24 }}>
             <strong>J&R Concretos</strong>
@@ -720,15 +805,15 @@ function FinalCTA() {
     <section className="alc-final">
       <div className="alc-wrap alc-final-inner">
         <div>
-          <p className="alc-eyebrow" style={{ color: "#f0d48a" }}>Pronto para iniciar sua obra?</p>
-          <h2>Solicite seu orcamento diretamente com Alciellen.</h2>
+          <p className="alc-eyebrow" style={{ color: "#fff3cf" }}>Pronto para iniciar sua obra?</p>
+          <h2>Solicite seu orçamento diretamente com Alciellen.</h2>
           <p>
-            Receba atendimento rapido e personalizado para concreto usinado,
-            lajes pre-moldadas, vigotas, bombeamento, piso polido e piso discado
+            Receba atendimento rápido e personalizado para concreto usinado,
+            lajes pré-moldadas, vigotas, bombeamento, piso polido e piso discado
             em Manaus.
           </p>
         </div>
-        <a className="alc-btn alc-btn-primary" href={WA("Ola, Alciellen! Quero solicitar meu orcamento pelo WhatsApp.")} target="_blank" rel="noreferrer">
+        <a className="alc-btn alc-btn-primary" href={WA("Olá, Alciellen! Quero solicitar meu orçamento pelo WhatsApp.")} target="_blank" rel="noreferrer">
           <WhatsAppIcon size={16} /> Solicitar pelo WhatsApp
         </a>
       </div>
@@ -743,7 +828,7 @@ function Footer() {
         <div className="alc-footer-brand">
           <img src={assets.logo} alt="J&R Concretos" width={52} height={52} style={{ borderRadius: 6, marginBottom: 16 }} />
           <strong>Alciellen — J&R Concretos</strong>
-          <span>Concreto usinado, lajes pre-moldadas, vigotas, bombeamento, piso polido e piso discado em Manaus - AM.</span>
+          <span>Concreto usinado, lajes pré-moldadas, vigotas, bombeamento, piso polido e piso discado em Manaus - AM.</span>
         </div>
         <div className="alc-footer-grid">
           <div className="alc-footer-col">
@@ -756,12 +841,12 @@ function Footer() {
             </a>
           </div>
           <div className="alc-footer-col">
-            <strong>Endereco</strong>
+            <strong>Endereço</strong>
             <p>Av. Elias Ramiro Bentes, 918B<br />Manaus - AM<br />CEP 69018-567</p>
           </div>
           <div className="alc-footer-col">
             <strong>Atendimento</strong>
-            <p>Solicite seu orcamento diretamente pelo WhatsApp com Alciellen.</p>
+            <p>Solicite seu orçamento diretamente pelo WhatsApp com Alciellen.</p>
           </div>
         </div>
         <div className="alc-footer-bottom">
@@ -791,8 +876,9 @@ export default function AlciellenPage() {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: css }} />
+      <a className="alc-skip" href="#conteudo-principal">Pular para o conteúdo</a>
       <Navbar />
-      <main className="alc">
+      <main className="alc" id="conteudo-principal">
         <Hero />
         <Metrics />
         <About />

@@ -79,7 +79,30 @@ public/
 ## Rotas
 
 - `/` - Pagina principal da proposta comercial.
-- `/proposta-comercial/alciellen` - Alias da mesma pagina principal.
+- `/proposta-comercial/alciellen` - Redirecionamento permanente para a página principal.
+
+## SEO e domínio
+
+Domínio canônico:
+
+```text
+https://pkassessoria.com.br
+```
+
+O projeto inclui canonical, Open Graph, Twitter Card, JSON-LD, `robots.txt`,
+`sitemap.xml`, manifesto web e ícones para navegadores e dispositivos Apple.
+
+Em outro ambiente, o domínio pode ser sobrescrito com:
+
+```text
+NEXT_PUBLIC_SITE_URL=https://exemplo.com.br
+```
+
+Após publicar, envie este sitemap ao Google Search Console:
+
+```text
+https://pkassessoria.com.br/sitemap.xml
+```
 
 ## Imagens
 
@@ -89,13 +112,12 @@ Os assets da cliente ficam em:
 public/images/alciellen/
 ```
 
-Imagem prevista para os servicos de piso polido e piso discado:
+Imagens dos servicos de piso polido e piso discado:
 
 ```text
-public/images/alciellen/piso-polido-piso-discado-jr-concretos.jpg
+public/images/alciellen/piso-polido-industrial-v2.jpg
+public/images/alciellen/piso-discado-aplicacao-v2.jpg
 ```
-
-Essa imagem e usada nos cards dos servicos e na galeria de obras. Caso ainda nao exista no projeto, basta adicionar o arquivo nesse caminho com esse nome.
 
 ## Contatos
 

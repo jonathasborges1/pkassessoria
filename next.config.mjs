@@ -9,6 +9,15 @@ const nextConfig = {
   images: {
     unoptimized: process.env.NODE_ENV === "development",
   },
+  async redirects() {
+    return [
+      {
+        source: "/proposta-comercial/alciellen",
+        destination: "/",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
