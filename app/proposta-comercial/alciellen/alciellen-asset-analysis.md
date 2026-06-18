@@ -6,7 +6,7 @@ Pasta analisada: `public/images/alciellen`
 
 - `alciellen-consultora-comercial.png`: foto pessoal da Alciellen. Melhor asset humano para o hero e para reforcar atendimento direto.
 - `vigotas-para-laje-jr-concretos.jpg`: material de marketing de vigotas para laje, com paleta preto, amarelo e concreto.
-- `concreto-usinado-jr-concretos-manaus.jpg`: banner de concreto usinado com caminhoes, bomba, logo J&R e telefone. Melhor asset horizontal para produto/credibilidade.
+- `concreto-usinado-jr-concretos-manaus-v2.jpg`: imagem de concreto usinado com caminhão betoneira e bomba. Melhor asset horizontal para produto/credibilidade.
 - `laje-pre-moldada-instalacao-v2.jpg`: imagem horizontal de instalação de laje pré-moldada usada nos cards e na galeria.
 - `bombeamento-concreto-caminhao-betoneira.jpg`: material tecnico sobre caminhao betoneira e bomba de concreto, com pontos de entrega rapida/agilidade/qualidade.
 

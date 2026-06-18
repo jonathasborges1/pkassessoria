@@ -25,11 +25,14 @@ const assets = {
   logo: "/images/alciellen/alciellen-jr-concretos-logo.svg",
   portrait: "/images/alciellen/alciellen-consultora-comercial.png",
   vigotas: "/images/alciellen/vigotas-para-laje-jr-concretos.jpg",
-  concreto: "/images/alciellen/concreto-usinado-jr-concretos-manaus.jpg",
+  concreto: "/images/alciellen/concreto-usinado-jr-concretos-manaus-v2.jpg",
+  concretoLajes:
+    "/images/alciellen/concreto-usinado-para-lajes-jr-concretos-manaus.jpg",
   laje: "/images/alciellen/laje-pre-moldada-instalacao-v2.jpg",
   bomba: "/images/alciellen/bombeamento-concreto-caminhao-betoneira.jpg",
-  piso: "/images/alciellen/piso-polido-industrial-v2.jpg",
+  piso: "/images/alciellen/piso-polido-industrial-v3.jpg",
   pisoDiscado: "/images/alciellen/piso-discado-aplicacao-v2.jpg",
+  engenheiros: "/images/alciellen/engenheiros-obra-banner.jpg",
 };
 
 const navItems = [
@@ -53,9 +56,9 @@ const products = [
     title: "Laje pré-moldada sob medida",
     description:
       "Solução para acelerar a execução com acompanhamento comercial desde o primeiro contato.",
-    image: assets.laje,
-    imageWidth: 1536,
-    imageHeight: 1024,
+    image: assets.concretoLajes,
+    imageWidth: 1280,
+    imageHeight: 722,
     icon: Building2,
   },
   {
@@ -82,8 +85,9 @@ const products = [
     description:
       "Acabamento de alta durabilidade e estética refinada para pisos comerciais, residenciais e industriais.",
     image: assets.piso,
-    imageWidth: 1536,
-    imageHeight: 1024,
+    imageWidth: 720,
+    imageHeight: 1280,
+    imageLayout: "portrait-tall",
     icon: Ruler,
   },
   {
@@ -212,10 +216,18 @@ const css = `
   .alc-products .alc-eyebrow{color:#d6a12b}
   .alc-products .alc-h2{color:#fff}
   .alc-products .alc-lead{color:#c9cccf}
-  .alc-product-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:40px}
+  .alc-products-banner{position:relative;margin-top:40px;margin-bottom:40px;border-radius:10px;overflow:hidden;height:320px}
+  .alc-products-banner img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
+  .alc-products-banner::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,12,15,.72) 0%,rgba(10,12,15,.28) 100%)}
+  .alc-products-banner-label{position:absolute;z-index:1;left:28px;bottom:28px;max-width:420px}
+  .alc-products-banner-label strong{display:block;color:#fff;font-size:22px;font-weight:780;line-height:1.18}
+  .alc-products-banner-label span{display:block;margin-top:8px;color:#d6a12b;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+  .alc-product-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:0}
   .alc-product{position:relative;isolation:isolate;display:flex;flex-direction:column;background:#f4f1eb;color:#17191c;border-radius:10px;overflow:hidden}
   .alc-product-img{position:relative;z-index:0;flex:none;height:270px;overflow:hidden;background:#222}
-  .alc-product-img img{width:100%;height:100%;object-fit:cover}
+  .alc-product-img img{display:block;width:100%;height:100%;object-fit:cover}
+  .alc-product-img--portrait img{object-position:center 45%}
+  .alc-product-img--portrait-tall img{object-position:center 68%}
   .alc-product-body{position:relative;z-index:1;flex:1;padding:24px;background:#f4f1eb}
   .alc-product-icon{width:42px;height:42px;margin-bottom:20px;display:grid;place-items:center;border-radius:6px;background:#17191c;color:#d6a12b}
   .alc-product h3{margin:0;color:#17191c;font-size:23px;font-weight:780;letter-spacing:0;line-height:1.12}
@@ -240,7 +252,7 @@ const css = `
   .alc-gallery .alc-lead{color:#c9cccf}
   .alc-gallery-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:40px}
   .alc-shot{position:relative;margin:0;min-height:260px;overflow:hidden;border-radius:10px;background:#000}
-  .alc-shot img{width:100%;height:100%;min-height:260px;object-fit:cover;transition:transform .45s ease}
+  .alc-shot img{display:block;width:100%;height:100%;min-height:260px;object-fit:cover;transition:transform .45s ease}
   .alc-shot:hover img{transform:scale(1.035)}
   .alc-shot figcaption{position:absolute;left:14px;bottom:14px;padding:9px 11px;border:1px solid rgba(255,255,255,.18);border-radius:5px;background:rgba(17,19,21,.95);color:#fff;font-size:11px;font-weight:850;letter-spacing:.09em;text-transform:uppercase;backdrop-filter:blur(8px)}
 
@@ -329,12 +341,13 @@ const css = `
     .alc-portrait-card{position:relative;inset:auto;width:min(100%,300px);align-self:center;transform:none}
     .alc-portrait-card img{height:340px;aspect-ratio:auto;object-fit:cover;object-position:50% 24%}
     .alc-about-img img{height:340px;aspect-ratio:auto;object-position:50% 27%}
-    .alc-product-img{height:360px;display:grid;place-items:center;background:#101214}
-    .alc-product-img img{width:100%;height:100%;max-width:none;object-fit:contain}
-    .alc-product-img--portrait{height:auto;aspect-ratio:737/979}
-    .alc-shot{min-height:0;background:#101214}
-    .alc-shot img{width:100%;height:360px;min-height:0;max-width:none;object-fit:contain}
-    .alc-shot figcaption{position:static;border:0;border-radius:0;background:#101214}
+    .alc-product-img,
+    .alc-product-img--portrait-tall{height:280px;aspect-ratio:auto;background:#222}
+    .alc-product-img--portrait{height:auto;aspect-ratio:737/979;background:#222}
+    .alc-product-img img{width:100%;height:100%;max-width:none;object-fit:cover}
+    .alc-shot{height:300px;min-height:300px;background:#000}
+    .alc-shot img{width:100%;height:100%;min-height:0;max-width:none;object-fit:cover}
+    .alc-shot--portrait{height:auto;min-height:0;aspect-ratio:737/979}
     .alc-final::before{background-size:contain;background-repeat:no-repeat;background-position:center}
     .alc-metrics{padding:16px 0;background:#f4f1eb;border-block:0}
     .alc-metrics-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
@@ -553,6 +566,21 @@ function Products() {
           A composição visual usa as imagens disponíveis da Alciellen/J&R, sem
           depender de imagens genéricas de banco.
         </p>
+        <div className="alc-products-banner" aria-hidden="true">
+          <Image
+            src={assets.engenheiros}
+            alt=""
+            width={1920}
+            height={1080}
+            sizes="(min-width: 1160px) 1160px, 100vw"
+            loading="lazy"
+            decoding="async"
+          />
+          <div className="alc-products-banner-label">
+            <span>J&R Concretos em Manaus</span>
+            <strong>Soluções para obra com entrega programada e atendimento direto.</strong>
+          </div>
+        </div>
         <div className="alc-product-grid">
           {products.map((product) => {
             const Icon = product.icon;
@@ -687,11 +715,22 @@ function Differentials() {
 
 function Gallery() {
   const shots = [
-    { src: assets.piso, label: "Piso polido", width: 1536, height: 1024 },
+    { src: assets.piso, label: "Piso polido", width: 720, height: 1280 },
     { src: assets.pisoDiscado, label: "Piso discado", width: 1536, height: 1024 },
     { src: assets.laje, label: "Laje pré-moldada", width: 1536, height: 1024 },
-    { src: assets.concreto, label: "Concreto usinado", width: 738, height: 424 },
-    { src: assets.vigotas, label: "Vigotas para laje", width: 737, height: 979 },
+    {
+      src: assets.concretoLajes,
+      label: "Concreto usinado para lajes",
+      width: 1280,
+      height: 722,
+    },
+    {
+      src: assets.vigotas,
+      label: "Vigotas para laje",
+      width: 737,
+      height: 979,
+      imageLayout: "portrait",
+    },
     { src: assets.bomba, label: "Bombeamento", width: 597, height: 425 },
   ];
 
@@ -705,8 +744,15 @@ function Gallery() {
           estrutura da J&R Concretos no atendimento a diferentes tipos de obra.
         </p>
         <div className="alc-gallery-grid">
-          {shots.map(({ src, label, width, height }) => (
-            <figure className="alc-shot" key={src}>
+          {shots.map(({ src, label, width, height, ...shot }) => (
+            <figure
+              className={`alc-shot${
+                "imageLayout" in shot && shot.imageLayout === "portrait"
+                  ? " alc-shot--portrait"
+                  : ""
+              }`}
+              key={src}
+            >
               <Image
                 src={src}
                 alt={label}
