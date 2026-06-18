@@ -28,7 +28,6 @@ const assets = {
   concreto: "/images/alciellen/concreto-usinado-jr-concretos-manaus-v2.jpg",
   concretoLajes:
     "/images/alciellen/concreto-usinado-para-lajes-jr-concretos-manaus.jpg",
-  laje: "/images/alciellen/laje-pre-moldada-instalacao-v2.jpg",
   bomba: "/images/alciellen/bombeamento-concreto-caminhao-betoneira.jpg",
   piso: "/images/alciellen/piso-polido-industrial-v3.jpg",
   pisoDiscado: "/images/alciellen/piso-discado-aplicacao-v2.jpg",
@@ -51,15 +50,6 @@ const products = [
     imageWidth: 738,
     imageHeight: 424,
     icon: Truck,
-  },
-  {
-    title: "Laje pré-moldada sob medida",
-    description:
-      "Solução para acelerar a execução com acompanhamento comercial desde o primeiro contato.",
-    image: assets.concretoLajes,
-    imageWidth: 1280,
-    imageHeight: 722,
-    icon: Building2,
   },
   {
     title: "Vigotas para laje",
@@ -424,7 +414,7 @@ function Hero() {
       <div className="alc-wrap alc-hero-inner">
         <div className="alc-hero-copy">
           <p className="alc-eyebrow">J&R Concretos em Manaus</p>
-          <h1>Concreto usinado e lajes pré-moldadas para sua obra.</h1>
+          <h1>Concreto usinado e soluções para sua obra.</h1>
           <p className="alc-hero-sub">
             Atendimento especializado para engenheiros, arquitetos, construtoras,
             empresários e clientes que buscam qualidade, segurança e agilidade
@@ -524,9 +514,8 @@ function About() {
             {/* TODO: substituir pela historia real da cliente. */}
             <p>
               Alciellen atua no atendimento comercial da J&R Concretos, apoiando
-              clientes que precisam de concreto usinado, lajes pré-moldadas,
-              vigotas, bombeamento de concreto, piso polido e piso discado em
-              Manaus.
+              clientes que precisam de concreto usinado, vigotas, bombeamento
+              de concreto, piso polido e piso discado em Manaus.
             </p>
             <p>
               O foco é simplificar a compra: entender a demanda, orientar os
@@ -717,7 +706,6 @@ function Gallery() {
   const shots = [
     { src: assets.piso, label: "Piso polido", width: 720, height: 1280 },
     { src: assets.pisoDiscado, label: "Piso discado", width: 1536, height: 1024 },
-    { src: assets.laje, label: "Laje pré-moldada", width: 1536, height: 1024 },
     {
       src: assets.concretoLajes,
       label: "Concreto usinado para lajes",
@@ -855,8 +843,7 @@ function FinalCTA() {
           <h2>Solicite seu orçamento diretamente com Alciellen.</h2>
           <p>
             Receba atendimento rápido e personalizado para concreto usinado,
-            lajes pré-moldadas, vigotas, bombeamento, piso polido e piso discado
-            em Manaus.
+            vigotas, bombeamento, piso polido e piso discado em Manaus.
           </p>
         </div>
         <a className="alc-btn alc-btn-primary" href={WA("Olá, Alciellen! Quero solicitar meu orçamento pelo WhatsApp.")} target="_blank" rel="noreferrer">
@@ -874,7 +861,7 @@ function Footer() {
         <div className="alc-footer-brand">
           <img src={assets.logo} alt="J&R Concretos" width={52} height={52} style={{ borderRadius: 6, marginBottom: 16 }} />
           <strong>Alciellen — J&R Concretos</strong>
-          <span>Concreto usinado, lajes pré-moldadas, vigotas, bombeamento, piso polido e piso discado em Manaus - AM.</span>
+          <span>Concreto usinado, vigotas, bombeamento, piso polido e piso discado em Manaus - AM.</span>
         </div>
         <div className="alc-footer-grid">
           <div className="alc-footer-col">

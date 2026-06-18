@@ -2,7 +2,7 @@
 
 Projeto em Next.js para apresentacao comercial da Alciellen, consultora comercial da J&R Concretos em Manaus.
 
-A pagina apresenta servicos como concreto usinado, lajes pre-moldadas, vigotas, bombeamento de concreto, piso polido e piso discado, com foco em captacao de orcamentos pelo WhatsApp.
+A pagina apresenta servicos como concreto usinado, vigotas, bombeamento de concreto, piso polido e piso discado, com foco em captacao de orcamentos pelo WhatsApp.
 
 ## Tecnologias
 

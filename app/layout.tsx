@@ -2,9 +2,9 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { SITE_URL } from "./site-config";
 
-const title = "Alciellen | Concreto Usinado e Lajes Pré-Moldadas em Manaus";
+const title = "Alciellen | Concreto Usinado e Serviços para Obras em Manaus";
 const description =
-  "Solicite orçamento de concreto usinado, lajes pré-moldadas, vigotas, bombeamento, piso polido e piso discado em Manaus.";
+  "Solicite orçamento de concreto usinado, vigotas, bombeamento, piso polido e piso discado em Manaus.";
 const ogImage = `${SITE_URL}/images/alciellen/og-alciellen-jr-concretos.jpg`;
 
 export const metadata: Metadata = {
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
         url: "/images/alciellen/og-alciellen-jr-concretos.jpg",
         width: 1200,
         height: 630,
-        alt: "Alciellen — concreto usinado e lajes pré-moldadas em Manaus",
+        alt: "Alciellen — concreto usinado e serviços para obras em Manaus",
         type: "image/jpeg",
       },
     ],
@@ -129,7 +129,6 @@ const structuredData = {
         name: "Produtos e serviços para construção",
         itemListElement: [
           "Concreto usinado",
-          "Lajes pré-moldadas",
           "Vigotas para laje",
           "Bombeamento de concreto",
           "Piso polido",

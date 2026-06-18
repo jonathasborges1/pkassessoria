@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Alciellen — J&R Concretos",
     short_name: "Alciellen",
     description:
-      "Atendimento comercial para concreto usinado, lajes pré-moldadas e serviços para construção em Manaus.",
+      "Atendimento comercial para concreto usinado e serviços para construção em Manaus.",
     start_url: "/",
     display: "standalone",
     background_color: "#f4f1eb",
